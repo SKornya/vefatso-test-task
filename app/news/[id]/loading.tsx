@@ -3,7 +3,7 @@ import { FunctionComponent } from 'react';
 
 const Spinner: FunctionComponent = () => {
   console.log('spin');
-  return <Spin />;
+  return <Spin style={{ margin: '0 auto' }} />;
 };
 
 export default Spinner;
