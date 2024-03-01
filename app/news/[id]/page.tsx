@@ -1,15 +1,20 @@
-import { Button, Card } from 'antd';
-import Link from 'next/link';
 import { FunctionComponent } from 'react';
 
-const Page: FunctionComponent = () => {
+import Link from 'next/link';
+
+import { Button, Card } from 'antd';
+
+interface PageProps {
+  params: { id: string };
+}
+
+const Page: FunctionComponent<PageProps> = ({ params }) => {
   return (
-    <div>
-      <Card>NEWS</Card>
-      <Button>
-        <Link href={'/'}>TO MAIN</Link>
+    <Card>
+      <Button type='primary'>
+        <Link href={'/'}>TO MAIN from id {params.id}</Link>
       </Button>
-    </div>
+    </Card>
   );
 };
 
