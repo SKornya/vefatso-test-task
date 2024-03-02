@@ -1,14 +1,26 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 
 import Link from 'next/link';
 
-import { Card } from 'antd';
+import { Card, Button } from 'antd';
+import Text from 'antd/es/typography/Text';
+import { UserOutlined, ReloadOutlined } from '@ant-design/icons';
 
 import { Post } from '@/lib/fetchPost';
 import { fetchData } from '@/lib/fetchData';
+import PostCard from '@/components/PostCard';
+import ReloadButton from '@/components/ReloadDataButton';
+
+const reloadHandle = async (news: Post[]) => {
+  'use server';
+  news = await fetchData();
+  // return news;
+}
+
+const POSTS_COUNT = 100;
 
 const Home: FunctionComponent = async () => {
-  let news = await fetchData();
+  let news: Post[] = await fetchData();
 
   return (
     <Card
@@ -17,14 +29,28 @@ const Home: FunctionComponent = async () => {
         width: '100%',
       }}
     >
-      {Object.values(news.slice(0, 100)).map((item: Post) => {
-        return (
-          <Card key={item.id}>
-            <Link href={`/news/${item.id}`}>{item.title}</Link>
-            
-          </Card>
-        );
-      })}
+      <ReloadButton fetchData={async () => {
+        'use server';
+        news = await fetchData();
+      }} />
+
+      <>
+        {news &&
+          Object.values(news.slice(0, POSTS_COUNT)).map(
+            ({ id, by, title, score, time }: Post) => {
+              return (
+                <PostCard
+                  key={id}
+                  id={id}
+                  by={by}
+                  title={title}
+                  score={score}
+                  time={time}
+                />
+              );
+            }
+          )}
+      </>
     </Card>
   );
 };

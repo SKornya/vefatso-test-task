@@ -16,7 +16,7 @@ export const fetchData: IfetchData = async () => {
     const ids = await response.json();
     const promises = ids.map(async (id: number) => {
       const post = await fetchPost(id);
-      return post;
+      return post || {};
     });
 
     data = await Promise.all(promises);
