@@ -4,7 +4,11 @@ import Link from 'next/link';
 
 import { Card, Space, Flex } from 'antd';
 import Text from 'antd/es/typography/Text';
-import { FieldTimeOutlined, StarOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  FieldTimeOutlined,
+  StarOutlined,
+  UserOutlined,
+} from '@ant-design/icons';
 
 import dateFormat from '@/lib/dateFormat';
 
@@ -34,23 +38,19 @@ const PostCard: FunctionComponent<PostCardProps> = ({
       style={{
         margin: '10px 0',
       }}
-      styles={{ title: { whiteSpace: 'normal' } }}
-    >
-      <Flex justify='space-between'>
-        <Text>
+      styles={{ title: { whiteSpace: 'normal' }, body: { display: 'none'} }}
+      actions={[
+        <Text key="user">
           <UserOutlined /> <Text>{by}</Text>
-        </Text>
-
-        <Space size='small'>
-          <Text>
-            <StarOutlined /> {score}
-          </Text>
-
-          <Text>
-            <FieldTimeOutlined /> {dateFormat(time)}
-          </Text>
-        </Space>
-      </Flex>
+        </Text>,
+        <Text key="score">
+          <StarOutlined /> {score}
+        </Text>,
+        <Text key="time">
+          <FieldTimeOutlined /> {dateFormat(time)}
+        </Text>,
+      ]}
+    >
     </Card>
   );
 };

@@ -58,36 +58,34 @@ const PostPageContainer: FunctionComponent<PostPageContainerProps> = ({
         type="inner"
         title={title}
         styles={{ title: { whiteSpace: 'normal' } }}
+        actions={[
+          <Text key="user" type="secondary">
+            <UserOutlined /> {by}
+          </Text>,
+
+          <Text key="commentsCount" type="secondary">
+            <CommentOutlined /> {commentsCount(comments)}
+          </Text>,
+
+          <Text key="time" type="secondary">
+            <FieldTimeOutlined /> {dateFormat(time)}
+          </Text>,
+        ]}
       >
         <Button
           target="blank"
           href={url}
-          style={{
-            marginBottom: '20px',
-          }}
         >
           Open source
         </Button>
-        <Flex justify="space-between">
-          <Text type="secondary">
-            <UserOutlined /> {by}
-          </Text>
-
-          <Space>
-            <Text type="secondary">
-              <CommentOutlined /> {commentsCount(comments)}
-            </Text>
-
-            <Text type="secondary">
-              <FieldTimeOutlined /> {dateFormat(time)}
-            </Text>
-          </Space>
-        </Flex>
       </Card>
 
-      <Comments treeData={treeComments} refreshComments={() => {
-        refreshComments(id)
-      }} />
+      <Comments
+        treeData={treeComments}
+        refreshComments={() => {
+          refreshComments(id);
+        }}
+      />
     </Card>
   );
 };
