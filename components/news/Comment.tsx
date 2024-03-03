@@ -2,7 +2,8 @@
 
 import { FunctionComponent } from 'react';
 
-import { Card } from 'antd';
+import { Card, Flex } from 'antd';
+import Text from 'antd/es/typography/Text';
 
 import dateFormat from '@/lib/dateFormat';
 import { Post } from '@/lib/fetchPost';
@@ -13,13 +14,20 @@ interface CommentProps {
 }
 
 const Comment: FunctionComponent<CommentProps> = ({ comment }) => {
+  const { by, text, time } = comment;
+
   return (
     <Card
       type="inner"
-      title={comment.by}
+      title={
+        <Flex justify="space-between">
+          <Text>{by}</Text>{' '}
+          <Text type="secondary">{dateFormat(time)}</Text>
+        </Flex>
+      }
       styles={{ header: { whiteSpace: 'normal' } }}
     >
-      <div dangerouslySetInnerHTML={createMarkup(comment.text || '')} />
+      <div dangerouslySetInnerHTML={createMarkup(text || '')} />
     </Card>
   );
 };
