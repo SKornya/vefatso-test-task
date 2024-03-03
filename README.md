@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Hacker news nexjs test task
 
-## Getting Started
+### Description
 
-First, run the development server:
+Нужно разработать интерфейс для сайта [Hacker News](https://news.ycombinator.com/news), состоящий из двух страниц.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+#### Продуктовые требования
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##### Главная страница
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Показывает последние 100 новостей в виде списка, отсортированного по дате, самые свежие сверху.
+- Каждая новость содержит:
+  - название
+  - рейтинг
+  - ник автора
+  - дату публикации
+- По клику на новость происходит переход на страницу новости
+- Список новостей должен автоматически обновляться раз в минуту без участия пользователя
+- На странице должна быть кнопка для принудительного обновления списка новостей
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+##### Страница новости
 
-## Learn More
+- Должна содержать:
+  - ссылку на новость
+  - заголовок новости
+  - дату
+  - автора
+  - счётчик количества комментариев
+  - список комментариев в виде дерева
+- Корневые комментарии подгружаются сразу же при входе на страницу, вложенные - по клику на корневой
+- На странице должна быть кнопка для принудительного обновления списка комментариев
+- На странице должна быть кнопка для возврата к списку новостей
 
-To learn more about Next.js, take a look at the following resources:
+#### Технические требования
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Приложение разработано с использованием NextJS
+- Использован [официальный API Hacker News](https://github.com/HackerNews/API). Вызовы Hacker News API и обработка данных от него производятся на серверной части приложения.
+- Роутинг выполнен с использованием [NextJS Routing](https://nextjs.org/docs/pages/building-your-application/routing)
+- Фреймворк UI любой на ваше усмотрение (как пример [Ant Design](https://ant.design/) или [Semantic UI](https://react.semantic-ui.com/)).
+  - Можно и на чистом css или tailwind, главное, чтобы было красиво
+- Верстка адаптирована под мобильные устройства
+- Приложение должно запускаться по адресу `localhost:3000` командой `yarn start`
+- При переходах по ссылкам страница не перезагружается
+- Исходный код решения должен быть выложен с вашего аккаунта на [Github](http://github.com/) с Readme файлом с инструкцией по запуску
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Опциональные задания
 
-## Deploy on Vercel
+- [Done] Использование TypeScript
+- Упаковать приложение в Docker
+- Покрытие кода юнит-тестами
+- [Done (~20 часов)] Трекать время на выполнение задания
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Install dependenies
+
+`yarn`
+
+#### Build
+
+`yarn build`
+
+#### Start app
+
+`yarn start`
+
+Open `localhost:3000`
