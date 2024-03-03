@@ -2,7 +2,7 @@
 
 import { FunctionComponent, ReactNode, useState } from 'react';
 
-import { Button, Card, Flex, Space, TreeDataNode } from 'antd';
+import { Button, Card, TreeDataNode } from 'antd';
 
 import BackwardButton from './BackwardButton';
 import Comments from './Comments';

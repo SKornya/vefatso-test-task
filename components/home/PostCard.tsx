@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 
 import Link from 'next/link';
 
-import { Card, Space, Flex } from 'antd';
+import { Card } from 'antd';
 import Text from 'antd/es/typography/Text';
 import {
   FieldTimeOutlined,
