@@ -36,12 +36,12 @@ const PostCard: FunctionComponent<PostCardProps> = ({
       }}
       styles={{ title: { whiteSpace: 'normal' } }}
     >
-      <Space>
+      <Flex justify='space-between'>
         <Text>
           <UserOutlined /> <Text>{by}</Text>
         </Text>
 
-        {/* <Space size='small'> */}
+        <Space size='small'>
           <Text>
             <StarOutlined /> {score}
           </Text>
@@ -49,8 +49,8 @@ const PostCard: FunctionComponent<PostCardProps> = ({
           <Text>
             <FieldTimeOutlined /> {dateFormat(time)}
           </Text>
-        {/* </Space> */}
-      </Space>
+        </Space>
+      </Flex>
     </Card>
   );
 };
